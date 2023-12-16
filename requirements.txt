@@ -1,0 +1,16 @@
+Django
+python-dotenv
+psycopg2
+pillow
+ipython
+djangorestframework
+djangorestframework-simplejwt
+coverage
+drf-yasg
+requests
+redis
+celery
+django-celery-beat
+
+todo django_filter может быть для фильтров ???
+todo pip install flake8 ???
