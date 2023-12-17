@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # Packages
     'rest_framework',
     'drf_yasg',
+    'django_filters',
     'corsheaders',
     'django_celery_beat',
 ]

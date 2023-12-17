@@ -7,11 +7,11 @@ djangorestframework
 djangorestframework-simplejwt
 coverage
 drf-yasg
+django_filter
 requests
 django-cors-headers
 redis
 celery
 django-celery-beat
 
-todo django_filter может быть для фильтров ???
 todo pip install flake8 ???
