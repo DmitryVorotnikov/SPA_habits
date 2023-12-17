@@ -8,6 +8,7 @@ djangorestframework-simplejwt
 coverage
 drf-yasg
 requests
+django-cors-headers
 redis
 celery
 django-celery-beat
