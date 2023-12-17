@@ -6,8 +6,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from users.models import User
 from users.paginators import UserPaginator
-from users.serializers import UserCreateForAdminSerializer, UserCreateSerializer, UserListRetrieveSerializer, \
-    UserUpdateForAdminSerializer, UserUpdateSerializer
+from users.serializers import UserCreateUpdateForAdminSerializer, UserCreateUpdateSerializer, UserListRetrieveSerializer
 
 
 class UserCreateAPIView(generics.CreateAPIView):
@@ -33,9 +32,9 @@ class UserCreateAPIView(generics.CreateAPIView):
     def get_serializer_class(self):
         if self.request.user.is_staff:
             # Администратор может заполнять любые поля.
-            return UserCreateForAdminSerializer
+            return UserCreateUpdateForAdminSerializer
 
-        return UserCreateSerializer
+        return UserCreateUpdateSerializer
 
 
 class UserListAPIView(generics.ListAPIView):
@@ -97,9 +96,9 @@ class UserUpdateAPIView(generics.UpdateAPIView):
     def get_serializer_class(self):
         if self.request.user.is_staff:
             # Администратор может редактировать все поля.
-            return UserUpdateForAdminSerializer
+            return UserCreateUpdateForAdminSerializer
 
-        return UserUpdateSerializer
+        return UserCreateUpdateSerializer
 
 
 class UserDestroyAPIView(generics.DestroyAPIView):
