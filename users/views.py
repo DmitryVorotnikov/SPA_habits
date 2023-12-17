@@ -49,9 +49,9 @@ class UserListAPIView(generics.ListAPIView):
     pagination_class = UserPaginator
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ('first_name', 'last_name', 'email',)
-    search_fields = ('first_name', 'last_name', 'email', 'chat_id',)
-    ordering_fields = ('first_name', 'last_name', 'email',)
+    filterset_fields = ('id', 'first_name', 'last_name', 'email', 'chat_id',)
+    search_fields = ('id', 'first_name', 'last_name', 'email', 'chat_id',)
+    ordering_fields = ('is_active',)
 
 
 class UserRetrieveAPIView(generics.RetrieveAPIView):
