@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from habits.models import UsefulHabit, PleasantHabit
+from habits.models import Habit
 
 
-@admin.register(UsefulHabit)
-class UsefulHabitAdmin(admin.ModelAdmin):
+@admin.register(Habit)
+class HabitAdmin(admin.ModelAdmin):
     list_display = (
         'user',
         'action',
@@ -14,20 +14,8 @@ class UsefulHabitAdmin(admin.ModelAdmin):
         'pleasant_habit',
         'reward',
         'periodicity',
+        'is_pleasant_habit',
         'is_published',
     )
-    list_filter = ('user', 'periodicity', 'is_published',)
-    search_fields = ('user', 'action', 'location',)
-
-
-@admin.register(PleasantHabit)
-class PleasantHabitAdmin(admin.ModelAdmin):
-    list_display = (
-        'user',
-        'action',
-        'action_time_in_minutes',
-        'location',
-        'is_published',
-    )
-    list_filter = ('user', 'is_published',)
+    list_filter = ('user', 'periodicity', 'is_pleasant_habit', 'is_published',)
     search_fields = ('user', 'action', 'location',)
