@@ -6,8 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
 from habits.paginators import HabitPaginator
-from habits.serializers import HabitUsefulCreateUpdateSerializer, HabitPleasantCreateUpdateSerializer, \
-    HabitListRetrieveSerializer
+from habits.serializers import HabitCreateUpdateSerializer, HabitListRetrieveSerializer
 
 
 class HabitCreateAPIView(generics.CreateAPIView):
@@ -16,12 +15,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
     Представление для создания привычки.
     """
     permission_classes = [IsAuthenticated]
-
-    def get_serializer_class(self):
-        """ Метод вернет разные сериализаторы в зависимости от признака приятной привычки. """
-        if self.request.data.get('is_pleasant_habit'):
-            return HabitUsefulCreateUpdateSerializer
-        return HabitPleasantCreateUpdateSerializer
+    serializer_class = HabitCreateUpdateSerializer
 
     def perform_create(self, serializer):
         """ Метод укажет текущего пользователя как создателя курса. """
@@ -82,16 +76,11 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
     Представление для редактирования привычки текущего пользователя.
     """
     permission_classes = [IsAuthenticated]
+    serializer_class = HabitCreateUpdateSerializer
 
     def get_queryset(self):
         """ Метод вернет queryset с привычками текущего пользователя. """
         return Habit.objects.filter(user=self.request.user)
-
-    def get_serializer_class(self):
-        """ Метод вернет разные сериализаторы в зависимости от признака приятной привычки. """
-        if self.request.data.get('is_pleasant_habit'):
-            return HabitUsefulCreateUpdateSerializer
-        return HabitPleasantCreateUpdateSerializer
 
 
 class HabitDestroyAPIView(generics.DestroyAPIView):
