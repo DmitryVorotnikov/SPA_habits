@@ -15,6 +15,13 @@ class UserCreateAPIView(generics.CreateAPIView):
     Представление для создания пользователя. Для пользователей и администраторов.
     """
 
+    def get_serializer_class(self):
+        if self.request.user.is_staff:
+            # Администратор может заполнять любые поля.
+            return UserCreateUpdateForAdminSerializer
+
+        return UserCreateUpdateSerializer
+
     def perform_create(self, serializer):
         """
         Hashes the user's password before saving it to the DB.
@@ -28,13 +35,6 @@ class UserCreateAPIView(generics.CreateAPIView):
 
         # Установка хешированного пароля в сериализатор перед сохранением в БД.
         serializer.save(password=hashed_password)
-
-    def get_serializer_class(self):
-        if self.request.user.is_staff:
-            # Администратор может заполнять любые поля.
-            return UserCreateUpdateForAdminSerializer
-
-        return UserCreateUpdateSerializer
 
 
 class UserListAPIView(generics.ListAPIView):
@@ -70,21 +70,6 @@ class UserUpdateAPIView(generics.UpdateAPIView):
     """
     permission_classes = [IsAuthenticated]
 
-    def perform_update(self, serializer):
-        """
-        Hashes the user's password before saving it to the DB.
-        Хеширует пароль пользователя перед записью в БД.
-        """
-        # Получение пароля из запроса.
-        password = self.request.data.get('password')
-
-        # Хеширование пароля, если он был изменен.
-        if password:
-            hashed_password = make_password(password)
-            serializer.save(password=hashed_password)
-        else:
-            serializer.save()
-
     def get_queryset(self):
         if self.request.user.is_staff:
             # Администратор может редактировать всех пользователей.
@@ -99,6 +84,21 @@ class UserUpdateAPIView(generics.UpdateAPIView):
             return UserCreateUpdateForAdminSerializer
 
         return UserCreateUpdateSerializer
+
+    def perform_update(self, serializer):
+        """
+        Hashes the user's password before saving it to the DB.
+        Хеширует пароль пользователя перед записью в БД.
+        """
+        # Получение пароля из запроса.
+        password = self.request.data.get('password')
+
+        # Хеширование пароля, если он был изменен.
+        if password:
+            hashed_password = make_password(password)
+            serializer.save(password=hashed_password)
+        else:
+            serializer.save()
 
 
 class UserDestroyAPIView(generics.DestroyAPIView):
