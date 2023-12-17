@@ -8,7 +8,7 @@ class HabitAdmin(admin.ModelAdmin):
     list_display = (
         'user',
         'action',
-        'action_time_in_minutes',
+        'action_time_in_second',
         'started_at',
         'location',
         'pleasant_habit',

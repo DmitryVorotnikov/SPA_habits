@@ -35,7 +35,7 @@ class Habit(models.Model):
         **NULLABLE
     )
     reward = models.TextField(max_length=1000, verbose_name='Вознаграждение', **NULLABLE)
-    action_time_in_minutes = models.PositiveSmallIntegerField(
+    action_time_in_second = models.PositiveSmallIntegerField(
         verbose_name='Длительность действия',
         validators=[MinValueValidator(1), MaxValueValidator(120)]
     )
