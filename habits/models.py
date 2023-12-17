@@ -41,9 +41,7 @@ class UsefulHabit(models.Model):
     is_published = models.BooleanField(default=False, verbose_name='Признак публичности')
 
     def __str__(self):
-        hours = self.action_time_in_minutes // 60
-        minutes = self.action_time_in_minutes % 60
-        return f'{hours} часов {minutes} минут'
+        return f'Полезная привычка: {self.action}'
 
     class Meta:
         verbose_name = 'Полезная привычка'
@@ -63,9 +61,7 @@ class PleasantHabit(models.Model):
     is_published = models.BooleanField(default=False, verbose_name='Признак публичности')
 
     def __str__(self):
-        hours = self.action_time_in_minutes // 60
-        minutes = self.action_time_in_minutes % 60
-        return f'{hours} часов {minutes} минут'
+        return f'Приятная привычка: {self.action}'
 
     class Meta:
         verbose_name = 'Приятная привычка'
