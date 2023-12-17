@@ -41,7 +41,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Apps
-    # path('', include('habits.urls', namespace='habits')),
+    path('', include('habits.urls', namespace='habits')),
 
     # Users
     path('users/', include('users.urls', namespace='users')),
