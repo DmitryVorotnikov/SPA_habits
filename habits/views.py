@@ -12,7 +12,7 @@ from habits.serializers import HabitUsefulCreateUpdateSerializer, HabitPleasantC
 
 class HabitCreateAPIView(generics.CreateAPIView):
     """
-    todo написать перевод
+    View for creating a habit.
     Представление для создания привычки.
     """
     permission_classes = [IsAuthenticated]
@@ -30,7 +30,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
 
 class HabitListAPIView(generics.ListAPIView):
     """
-    todo написать перевод
+    View for viewing the list of habits for the current user.
     Представление для просмотра списка привычек текущего пользователя.
     """
     permission_classes = [IsAuthenticated]
@@ -49,7 +49,7 @@ class HabitListAPIView(generics.ListAPIView):
 
 class HabitPublicListAPIView(generics.ListAPIView):
     """
-    todo написать перевод
+    View for viewing the list of public habits.
     Представление для просмотра списка публичных привычек.
     """
     permission_classes = [IsAuthenticated]
@@ -64,6 +64,10 @@ class HabitPublicListAPIView(generics.ListAPIView):
 
 
 class HabitRetrieveAPIView(generics.RetrieveAPIView):
+    """
+    View for viewing a public habit or a habit of the current user.
+    Представление для просмотра публичной привычки или привычки текущего пользователя.
+    """
     permission_classes = [IsAuthenticated]
     serializer_class = HabitListRetrieveSerializer
 
@@ -73,6 +77,10 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
 
 
 class HabitUpdateAPIView(generics.UpdateAPIView):
+    """
+    View for editing a habit of the current user.
+    Представление для редактирования привычки текущего пользователя.
+    """
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -87,6 +95,10 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
 
 
 class HabitDestroyAPIView(generics.DestroyAPIView):
+    """
+    View for deleting a habit of the current user.
+    Представление для удаления привычки текущего пользователя.
+    """
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
