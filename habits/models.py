@@ -41,6 +41,8 @@ class Habit(models.Model):
     is_pleasant_habit = models.BooleanField(default=False, verbose_name='Признак приятной привычки')
     is_published = models.BooleanField(default=False, verbose_name='Признак публичности')
 
+    last_message_time = models.DateTimeField(verbose_name='Дата/время последнего сообщения', **NULLABLE)
+
     def __str__(self):
         return f'Привычка: {self.action}'
 
