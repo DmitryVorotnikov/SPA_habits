@@ -13,5 +13,5 @@ django-cors-headers
 redis
 celery
 django-celery-beat
-
-todo pip install flake8 ???
+flake8
+flake8-html
