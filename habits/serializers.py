@@ -21,16 +21,15 @@ class HabitCreateUpdateSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('id',)
 
-        def validate(self, data):
-            validator_habit(
-                pleasant_habit=data['pleasant_habit'],
-                location=data['location'],
-                started_at=data['started_at'],
-                periodicity=data['periodicity'],
-                reward=data['reward'],
-                is_pleasant_habit=data['is_pleasant_habit'],
-            )
-            return data
+    def validate(self, data):
+        validator_habit(
+            pleasant_habit=data.get('pleasant_habit', None),
+            started_at=data.get('started_at', None),
+            periodicity=data.get('periodicity', None),
+            reward=data.get('reward', None),
+            is_pleasant_habit=data.get('is_pleasant_habit', None),
+        )
+        return data
 
 
 class HabitListRetrieveSerializer(serializers.ModelSerializer):
