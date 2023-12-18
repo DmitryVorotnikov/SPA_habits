@@ -8,6 +8,7 @@ class HabitCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Habit
         fields = (
+            'id',
             'pleasant_habit',
             'location',
             'started_at',
@@ -18,6 +19,7 @@ class HabitCreateUpdateSerializer(serializers.ModelSerializer):
             'is_pleasant_habit',
             'is_published',
         )
+        read_only_fields = ('id',)
 
         def validate(self, data):
             validator_habit(
