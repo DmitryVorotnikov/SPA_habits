@@ -75,8 +75,7 @@ class UserUpdateAPIView(generics.UpdateAPIView):
             # Администратор может редактировать всех пользователей.
             return User.objects.all()
 
-        user_id = self.request.user.id
-        return User.objects.filter(user=user_id).first()
+        return User.objects.filter(user=self.request.user).first()
 
     def get_serializer_class(self):
         if self.request.user.is_staff:
