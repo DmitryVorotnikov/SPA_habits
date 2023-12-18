@@ -10,7 +10,7 @@ urlpatterns = [
     # URLs Habit:
     path('create/', HabitCreateAPIView.as_view(), name='habits_create'),
     path('', HabitListAPIView.as_view(), name='habits_list'),  # Список привычек текущего пользователя
-    path('public', HabitPublicListAPIView.as_view(), name='public_list'),  # Список публичных привычек
+    path('public/', HabitPublicListAPIView.as_view(), name='public_list'),  # Список публичных привычек
     path('<int:pk>/', HabitRetrieveAPIView.as_view(), name='habits_get'),
     path('update/<int:pk>/', HabitUpdateAPIView.as_view(), name='habits_update'),
     path('delete/<int:pk>/', HabitDestroyAPIView.as_view(), name='habits_delete'),
