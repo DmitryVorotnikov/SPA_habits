@@ -205,10 +205,13 @@ CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выпол
 
 CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи (в секундах) (30 минут).
 
-# todo настроить CELERY_BEAT_SCHEDULE
-# CELERY_BEAT_SCHEDULE = {
-#     'task-name': {
-#         'task': 'education.tasks.task_anything',  # Путь к задаче
-#         'schedule': timedelta(days=1),  # Расписание выполнения задачи.
-#     },
-# }
+CELERY_BEAT_SCHEDULE = {
+    'task_send_tg_message': {
+        'task': 'habits.tasks.task_send_tg_message',  # Путь к задаче
+        'schedule': timedelta(minutes=4),  # Расписание выполнения задачи.
+    },
+}
+
+# Telegram
+TELEGRAM_URL = 'https://api.telegram.org/bot'
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
