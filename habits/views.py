@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
 from habits.paginators import HabitPaginator
+from habits.permissions import IsOwnerOrReadOnly, IsOwnerOrPublic
 from habits.serializers import HabitCreateUpdateSerializer, HabitListRetrieveSerializer
 
 
@@ -62,12 +63,9 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
     View for viewing a public habit or a habit of the current user.
     Представление для просмотра публичной привычки или привычки текущего пользователя.
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrPublic]
     serializer_class = HabitListRetrieveSerializer
-
-    def get_queryset(self):
-        """ Метод вернет queryset с публичными привычками или привычками текущего пользователя. """
-        return Habit.objects.filter(Q(is_published=True) | Q(user=self.request.user))
+    queryset = Habit.objects.all()
 
 
 class HabitUpdateAPIView(generics.UpdateAPIView):
@@ -75,12 +73,9 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
     View for editing a habit of the current user.
     Представление для редактирования привычки текущего пользователя.
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = HabitCreateUpdateSerializer
-
-    def get_queryset(self):
-        """ Метод вернет queryset с привычками текущего пользователя. """
-        return Habit.objects.filter(user=self.request.user)
+    queryset = Habit.objects.all()
 
 
 class HabitDestroyAPIView(generics.DestroyAPIView):
@@ -88,8 +83,5 @@ class HabitDestroyAPIView(generics.DestroyAPIView):
     View for deleting a habit of the current user.
     Представление для удаления привычки текущего пользователя.
     """
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        """ Метод вернет queryset с привычками текущего пользователя. """
-        return Habit.objects.filter(user=self.request.user)
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    queryset = Habit.objects.all()
