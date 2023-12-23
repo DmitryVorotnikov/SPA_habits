@@ -35,7 +35,7 @@ class HabitCreateUpdateSerializer(serializers.ModelSerializer):
         """ Метод укажет текущего пользователя как создателя привычки. """
         # Получаем текущего пользователя из контекста запроса.
         user = self.context['request'].user
-        # Создаем привычку, указывая пользователя
+        # Создаем привычку, указывая пользователя.
         habit = Habit.objects.create(user=user, **validated_data)
 
         return habit

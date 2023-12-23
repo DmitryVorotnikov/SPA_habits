@@ -21,9 +21,13 @@ class Command(BaseCommand):
 
         You can pass arguments as flags directly with the command
         or enter them later.
+
+        python manage.py ccsu --email=admin@example.com --password=example_password --confirm_password=example_password
         """
         parser.add_argument('--email', type=str, help='Admin email')
         parser.add_argument('--password', type=str, help='Admin password')
+        parser.add_argument('--confirm_password', type=str, help='Confirm admin password')
+        #
 
     def validate_email(self, email):
         """
@@ -87,7 +91,7 @@ class Command(BaseCommand):
         # Re-enter the password and check for a match.
         if not user_creation_required:
             while True:
-                confirm_password = getpass('Confirm admin password:\n')
+                confirm_password = options['confirm_password'] or getpass('Confirm admin password:\n')
                 if password != confirm_password:
                     user_creation_required = True
                     print("Passwords do not match. Please try again.")
