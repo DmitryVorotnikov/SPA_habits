@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -17,10 +16,6 @@ class HabitCreateAPIView(generics.CreateAPIView):
     """
     permission_classes = [IsAuthenticated]
     serializer_class = HabitCreateUpdateSerializer
-
-    def perform_create(self, serializer):
-        """ Метод укажет текущего пользователя как создателя курса. """
-        serializer.save(user=self.request.user)
 
 
 class HabitListAPIView(generics.ListAPIView):
