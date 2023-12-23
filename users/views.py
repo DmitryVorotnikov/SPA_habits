@@ -54,13 +54,14 @@ class UserUpdateAPIView(generics.UpdateAPIView):
     Представление для редактирования пользователя. Для пользователей и администраторов.
     """
     permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
 
     def get_queryset(self):
-        if self.request.user.is_staff:
-            # Администратор может редактировать всех пользователей.
-            return User.objects.all()
+        queryset = super().get_queryset()
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(user=self.request.user).first()
 
-        return User.objects.filter(user=self.request.user).first()
+        return queryset
 
     def get_serializer_class(self):
         if self.request.user.is_staff:
