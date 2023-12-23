@@ -1,4 +1,3 @@
-from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -21,20 +20,6 @@ class UserCreateAPIView(generics.CreateAPIView):
             return UserCreateUpdateForAdminSerializer
 
         return UserCreateUpdateSerializer
-
-    def perform_create(self, serializer):
-        """
-        Hashes the user's password before saving it to the DB.
-        Хеширует пароль пользователя перед записью в БД.
-        """
-        # Получение пароля из запроса.
-        password = self.request.data.get('password')
-
-        # Хеширование пароля.
-        hashed_password = make_password(password)
-
-        # Установка хешированного пароля в сериализатор перед сохранением в БД.
-        serializer.save(password=hashed_password)
 
 
 class UserListAPIView(generics.ListAPIView):
@@ -83,21 +68,6 @@ class UserUpdateAPIView(generics.UpdateAPIView):
             return UserCreateUpdateForAdminSerializer
 
         return UserCreateUpdateSerializer
-
-    def perform_update(self, serializer):
-        """
-        Hashes the user's password before saving it to the DB.
-        Хеширует пароль пользователя перед записью в БД.
-        """
-        # Получение пароля из запроса.
-        password = self.request.data.get('password')
-
-        # Хеширование пароля, если он был изменен.
-        if password:
-            hashed_password = make_password(password)
-            serializer.save(password=hashed_password)
-        else:
-            serializer.save()
 
 
 class UserDestroyAPIView(generics.DestroyAPIView):
