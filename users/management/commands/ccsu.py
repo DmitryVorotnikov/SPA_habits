@@ -27,7 +27,6 @@ class Command(BaseCommand):
         parser.add_argument('--email', type=str, help='Admin email')
         parser.add_argument('--password', type=str, help='Admin password')
         parser.add_argument('--confirm_password', type=str, help='Confirm admin password')
-        #
 
     def validate_email(self, email):
         """
