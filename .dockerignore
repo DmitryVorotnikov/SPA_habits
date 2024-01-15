@@ -1,0 +1,7 @@
+/env
+/htmlcov
+/db.sqlite3
+/.coverage
+/celerybeat-schedule.db
+__pycache__
+.idea
