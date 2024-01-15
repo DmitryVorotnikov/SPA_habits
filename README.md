@@ -21,6 +21,9 @@ The main goal of the project is to help users create, implement, and track benef
 - Usage of Swagger and Redoc for API documentation following the OpenAPI standard.
 - Includes flake8 report and test coverage report.
 
+## Project launch:
+1) Create a .env file in the project root following the example of the .env.sample file.
+2) Enter "docker compose up --build" in the console.
 
 
 # SPA_habits (RUS)
@@ -45,3 +48,7 @@ The main goal of the project is to help users create, implement, and track benef
 - Примеры переменных окружения для быстрого разворачивания проекта локально представлены в файле `.env.sample`.
 - Использование Swagger и Redoc для документации API по стандарту OpenAPI.
 - Присутствуют отчет flake8 и отчет покрытия тестами.
+
+## Запуск проекта:
+1) В корне проекта создайте файл .env по образцу файла .env.sample.
+2) Введите в консоль "docker compose up --build"
