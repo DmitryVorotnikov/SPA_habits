@@ -94,8 +94,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASES_NAME'),
-        'USER': os.getenv('DATABASES_USER'),
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': 'postgresql_db',  # Название сервиса в docker-compose.yaml
+        'PORT': '',  # По умолчанию используется порт 5432
     }
 }
 
@@ -196,8 +199,8 @@ CSRF_TRUSTED_ORIGINS = [  # Список доверенных источнико
 CORS_ALLOW_ALL_ORIGINS = False  # Разрешает абсолютно всем источникам отправлять запросы.
 
 # Celery and Celery-Beat
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'  # URL-адрес брокера результатов.
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'  # URL-адрес брокера результатов.
 
 CELERY_TIMEZONE = os.getenv('CELERY_TIMEZONE')
 
