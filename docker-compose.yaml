@@ -29,7 +29,7 @@ services:
   web_api:
     build: .
     tty: true
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000 && python manage.py collectstatic --noinput"
     volumes:
       - .:/spa_habits
     ports:
