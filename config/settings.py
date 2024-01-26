@@ -143,7 +143,7 @@ if ENV_TYPE == 'local':
         BASE_DIR / 'static',
     )
 else:
-    STATIC_ROOT = '/home/gitlab-runner/builds/s4XoJxhB-/0/DmitryVorotnikov/SPA_habits/static'
+    STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 
