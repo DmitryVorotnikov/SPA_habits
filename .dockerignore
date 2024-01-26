@@ -4,3 +4,4 @@
 /.coverage
 /celerybeat-schedule.db
 .idea
+__pychache__
