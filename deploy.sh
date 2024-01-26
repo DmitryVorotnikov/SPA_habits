@@ -6,7 +6,7 @@ sudo systemctl restart nginx
 # Добавляем права
 sudo usermod -aG docker gitlab-runner
 sudo chown -R gitlab-runner /home/gitlab-runner/
-sudo chmod -R a+rx /home/gitlab-runner/
+sudo chmod -R a+rwx /home/gitlab-runner/
 
 # Перезапускаем Docker-Compose
 docker-compose down
