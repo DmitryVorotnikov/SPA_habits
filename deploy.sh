@@ -31,6 +31,3 @@ docker-compose exec web_api python manage.py collectstatic --noinput
 sudo usermod -aG docker gitlab-runner
 sudo chown -R gitlab-runner /home/gitlab-runner/
 sudo chmod -R a+rwx /home/gitlab-runner/
-
-# Перезагружаем nginx
-sudo systemctl restart nginx
