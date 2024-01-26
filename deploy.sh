@@ -25,7 +25,7 @@ sudo chmod -R a+rwx /home/gitlab-runner/
 sudo systemctl restart nginx
 
 #Собираем статику
-
+docker-compose exec web_api python manage.py collectstatic --noinput
 
 # Добавляем права заново
 sudo usermod -aG docker gitlab-runner
