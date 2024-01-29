@@ -59,7 +59,7 @@ class UserUpdateAPIView(generics.UpdateAPIView):
     def get_queryset(self):
         queryset = super().get_queryset()
         if not self.request.user.is_staff:
-            queryset = queryset.filter(user=self.request.user).first()
+            queryset = queryset.filter(id=self.request.user.id)
 
         return queryset
 
