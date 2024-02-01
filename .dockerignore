@@ -5,3 +5,4 @@
 /celerybeat-schedule.db
 .idea
 __pycache__
+__pycache__/
