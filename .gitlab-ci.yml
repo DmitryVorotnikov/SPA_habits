@@ -1,12 +1,11 @@
 stages:
     - deploy
 
-before_script:
-  - sudo chown -R gitlab-runner:gitlab-runner /home/gitlab-runner/
-  - sudo chmod -R a+rwx /home/gitlab-runner/
-
 Deploy to stage:
     stage: deploy
+    before_script:
+      - sudo chown -R gitlab-runner:gitlab-runner /home/gitlab-runner/
+      - sudo chmod -R a+rwx /home/gitlab-runner/
     script:
         - cp $ENV_STAGE .env
         - bash deploy.sh
