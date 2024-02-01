@@ -18,7 +18,6 @@ docker-compose up -d
 
 # Добавляем права заново
 sudo usermod -aG docker gitlab-runner
-sudo chown -R gitlab-runner /home/gitlab-runner/
 sudo chown -R gitlab-runner:gitlab-runner /home/gitlab-runner/
 sudo chmod -R a+rwx /home/gitlab-runner/
 sudo chmod -R 755 /home/gitlab-runner/
@@ -28,7 +27,6 @@ sudo systemctl restart nginx
 
 # Добавляем права заново
 sudo usermod -aG docker gitlab-runner
-sudo chown -R gitlab-runner /home/gitlab-runner/
 sudo chown -R gitlab-runner:gitlab-runner /home/gitlab-runner/
 sudo chmod -R a+rwx /home/gitlab-runner/
 sudo chmod -R 755 /home/gitlab-runner/
