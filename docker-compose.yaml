@@ -11,6 +11,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    user: gitlab-runner
 
   postgresql_db:
     image: postgres
@@ -25,6 +26,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    user: gitlab-runner
 
   web_api:
     build: .
@@ -39,6 +41,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    user: gitlab-runner
 
   celery:
     build: .
@@ -47,6 +50,7 @@ services:
     depends_on:
       - redis
       - web_api
+    user: gitlab-runner
 
   celery_beat:
     build: .
@@ -56,6 +60,7 @@ services:
     depends_on:
       - redis
       - web_api
+    user: gitlab-runner
 
 volumes:
   pg_data:
